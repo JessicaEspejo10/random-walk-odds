@@ -1,21 +1,27 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 #setting the seed
 np.random.seed(123)
 
-#starting step
-step = 0
 
-#roll the dice
-dice = np.random.randint(1,7)
+# Initialization
+random_walk = [0]
 
-#control construct
-if dice <= 2 :
-    step = step - 1
-elif dice <6 :
-    step =+ 1
-else :
-    step = step + np.random.randint(1,7)
+for x in range(100) :
+    step = random_walk[-1]
+    dice = np.random.randint(1,7)
 
-# Print out dice and step
-print("dice: " + str(dice) + " - Step: " + str(step))
+    if dice <= 2:
+        step = max(0, step - 1)
+    elif dice <= 5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+
+    random_walk.append(step)
+
+#plot random walk
+plt.plot(random_walk)
+
+plt.show()
